@@ -24,3 +24,13 @@ knitr::opts_chunk$set(echo = params$code)
 ```{asis, echo = params$solution}
 Answer: NO!
 ```
+
+# Cars
+
+Fit a regession on mtcars.
+
+```{r, include=params$code}
+fit <- lm(mpg ~ hp + wt, data = mtcars)
+summary(fit)
+```
+
