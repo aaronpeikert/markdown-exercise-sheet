@@ -15,9 +15,10 @@ params:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = params$code)
+options(knitr.duplicate.label = 'allow') # workauround for purl see: https://stackoverflow.com/questions/36868287/
 ```
 
-```{r poackages, include=FALSE}
+```{r packages, include=FALSE}
 if(!require("pacman"))install.packages("pacman")
 pacman::p_load("pander")
 ```
@@ -46,3 +47,8 @@ pander(summary(fit))
 cat("The F-Value of the t-Value of the intercept is: ", round(fit$coefficients[[1]]^2, 2), ". This results from squaring the t-Value.")
 ```
 
+```{r generate pure r script, include=FALSE}
+input <- knitr::current_input(dir = TRUE)  # filename of input document
+output <- paste(tools::file_path_sans_ext(input), 'R', sep = '.')
+knitr::purl(input, output, documentation=0L, quiet=T)
+```
