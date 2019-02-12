@@ -4,7 +4,10 @@ author: "Aaron Peikert"
 date: "2/12/2019"
 output:
   html_document: default
-  pdf_document: default
+  pdf_document:
+    template: standard.tex
+    extra_dependencies: #may clash with template, if you specify here something that is allready in template it fails
+      lmodern: null
 ---
 
 ```{r setup, include=FALSE}
