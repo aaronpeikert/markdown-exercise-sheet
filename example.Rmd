@@ -9,12 +9,17 @@ output:
     extra_dependencies: #may clash with template, if you specify here something that is allready in template it fails
       lmodern: null
 params:
-  solution: true
-  code: true
+  solution: TRUE
+  code: TRUE
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = params$code)
+```
+
+```{r poackages, include=FALSE}
+if(!require("pacman"))install.packages("pacman")
+pacman::p_load("pander")
 ```
 
 # SEM
@@ -27,10 +32,17 @@ Answer: NO!
 
 # Cars
 
-Fit a regession on mtcars.
+Fit a regession on mtcars. Report the main statistics. Convert one of the t-Values to F-Values.
 
-```{r, include=params$code}
+```{r, include=params$code, results='hide'}
 fit <- lm(mpg ~ hp + wt, data = mtcars)
-summary(fit)
+```
+
+```{r, echo=FALSE, results=ifelse(isTRUE(params$solution), "asis", "hide")}
+pander(summary(fit))
+```
+
+```{r, include=params$solution, results='asis', echo=FALSE}
+cat("The F-Value of the t-Value of the intercept is: ", round(fit$coefficients[[1]]^2, 2), ". This results from squaring the t-Value.")
 ```
 
