@@ -25,7 +25,7 @@ pacman::p_load("pander")
 
 # SEM
 
-1. Should you run trust that the default SEM-Options in `MPLUS` or `lavaan` are what I have in Mind?
+1. Should you trust that the default SEM-Options in `MPLUS` or `lavaan` are exactly what you want?
 
 ```{asis, echo = params$solution}
 Answer: NO!
